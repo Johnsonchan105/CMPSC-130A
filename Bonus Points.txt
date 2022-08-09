@@ -1,0 +1,30 @@
+SHORTESTPATHTREE(G, s, T):
+    for each v in G(V,E):
+        distance[v] = infinite
+        previous[v] = infinite
+    distance[s] = 0
+    for each v in G(V,E):
+        for each edge uv with weight w:
+            if distance[u] + w < distance[v]:
+                distance[v] = distance[u] + weight
+                previous[v] = u
+    for each edge uv with weight w:
+        if distance[u] + w < distance [v]:
+            return false
+    let Q be the queue
+    let visited be the array
+    Q.enqueue(s)
+    visited[s] = true
+    let treeD be an array
+    while(!Q.empty()):
+        v = Q.dequeue()
+        for all neighbors x of v:
+            if not visited[x]:
+                w = weight of edge vx
+                if treeD[v] + w != distance[w]:
+                    return false
+                else:
+                    treeD[w] = treeD[v] + w
+                Q.enqueue(x)
+                visited[x] = true
+    return true
